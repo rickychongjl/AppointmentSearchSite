@@ -1,0 +1,43 @@
+﻿@model IPagedList<Appointment>
+@using MyApp.Entities;
+@using PagedList;
+@using PagedList.Mvc;
+@using System.Web;
+@{ ViewData["Title"] = "Results"; }
+
+<h2>Results</h2>
+<table class="table table-bordered" id="table1">
+    <thead>
+        <tr><th>Appointment Date Time</th><th>Pet Name</th><th>Owner Name</th><th>Preferred Contact</th></tr>
+    </thead>
+    @foreach (var s in Model)
+    {
+<tr>
+    <td>@s.AppointmentDateTime</td>
+    <td>@s.Pet.Name</td>
+    <td>@s.Owner.FirstName @s.Owner.LastName</td>
+    <td>@s.Owner.PreferredContact</td>
+</tr>}
+</table>
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        @*When first page is already max page*@
+        @if (ViewBag.Page == null)
+        {
+            @if (ViewBag.MaxPage > 1)
+            {
+                <li class="page-item" style="display: block"><a class="page-link" href="" id="nextlink" onclick="next(window.location.href)">Next</a></li>
+            }
+        }
+        @*When page is not in beginning*@
+        @if (ViewBag.Page > 1)
+        {
+            <li class="page-item" style="display: block"><a class="page-link" href="" id="previouslink" onclick="previous(window.location.href)">Previous</a></li>
+        }
+        @*When page is not in the end*@
+        @if (ViewBag.Page == 1 || ViewBag.Page < ViewBag.MaxPage)
+        {
+            <li class="page-item" style="display: block"><a class="page-link" href="" id="nextlink" onclick="next(window.location.href)">Next</a></li>
+        }
+    </ul>
+</nav>

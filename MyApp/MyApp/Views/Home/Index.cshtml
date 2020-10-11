@@ -1,0 +1,13 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center pb-3">
+    <h1 class="display-4">Appointment Search Site</h1>
+</div>
+@*Action is to controller method and with parameter so it can use it to invoke model and do something with the data*@
+<form method="get" action="/home/Search">
+    <input type="text" name="searchreq_name" placeholder="Pet name">
+    <input type="text" name="searchreq_date" placeholder="Date: mm/dd/yyy">
+    <input type="submit" value="Search Appointments">
+</form>
